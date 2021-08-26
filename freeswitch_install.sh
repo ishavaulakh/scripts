@@ -22,4 +22,11 @@ systemctl start freeswitch
 echo "$(tput setaf 2)Build complete: System will reboot in 5 seconds."
 echo "$(tput setaf 2)Run fs_cli to access switch"
 sleep 5
-systemctl reboot
+while true; do
+    read -p "$(tput setaf 2)It is recommended that you reboot your system now. Do you want to reboot?(Yes/No)" yn
+    case $yn in
+        [Yy]* ) echo "reboot"; break;;
+        [Nn]* ) echo "$(tput setaf 2)Please reboot your system manually before using";exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
