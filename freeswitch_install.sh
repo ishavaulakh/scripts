@@ -1,4 +1,7 @@
 #!/bin/bash
+echo "$(tput setaf 2)This script will install Freeswitch vanilla on your system"
+echo "$(tput setaf 2)If you wish to cancel press ctrl+c within 10 seconds"
+sleep 10
 cd 
 echo "$(tput setaf 2)Starting Update process"
 sleep 5
