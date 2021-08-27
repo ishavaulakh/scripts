@@ -16,7 +16,7 @@ wget -O - https://files.freeswitch.org/repo/deb/debian-release/fsstretch-archive
 echo "$(tput setaf 2)Building Switch Dependencies$(tput setaf 0)"
 sleep 5
 apt update -y && apt upgrade -y
-apt-get build-dep freeswitch
+apt-get build-dep freeswitch -y
 echo "$(tput setaf 2)Installing freeswitch$(tput setaf 0)"
 sleep 5
 apt-get update && apt-get install -y freeswitch-meta-all
