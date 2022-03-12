@@ -46,8 +46,8 @@ find /var/www/html/ -type f -exec chmod 644 {} \;
 startinstall()
 {
 upgradeos
-instphp
 disapache
+instphp
 installnginx
 instmysql
 mysql_secure_installation
