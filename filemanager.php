@@ -3,12 +3,6 @@
 $CONFIG = '{"lang":"en","error_reporting":false,"show_hidden":false,"hide_Cols":false,"calc_folder":false,"theme":"light"}';
 
 
-/**
- * H3K | Tiny File Manager V2.4.7
- * CCP Programmers | ccpprogrammers@gmail.com
- * https://tinyfilemanager.github.io
- */
-
 //TFM version
 define('VERSION', '2.4.7');
 
