@@ -5,6 +5,7 @@
 upgradeos(){
 echo Upgrading operating system before install.
 sudo apt update -y && sudo apt upgrade -y
+apt install -y zip unzip
 }
 
 #Install MySQL
