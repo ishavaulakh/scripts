@@ -35,9 +35,9 @@ apt install -y apache2
 # normalize www folder
 naturalize()
 {
-chown -R www-data:www-data /var/www/
 find /var/www/ -type d -exec chmod 755 {} \;
 find /var/www/ -type f -exec chmod 644 {} \;
+chown -R www-data:www-data /var/www/
 }
 
 install()
