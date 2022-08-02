@@ -44,9 +44,9 @@ apt install -y nginx
 # normalize ww folder
 naturalize()
 {
-chown -R www-data:www-data /var/www/
 find /var/www/ -type d -exec chmod 755 {} \;
 find /var/www/ -type f -exec chmod 644 {} \;
+chown -R $USER:$USER /var/www/
 }
 
 install()
