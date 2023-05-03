@@ -40,12 +40,23 @@ find /var/www/ -type f -exec chmod 644 {} \;
 chown -R $USER:$USER /var/www/
 }
 
+#install certbot
+certbot()
+{
+sudo apt install -y snapd snap
+sudo snap install core; sudo snap refresh core
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+}
+
+
 install()
 {
 upgradeos
 instapache
 instphp
 naturalize
+certbot
 instmysql
 
 }
