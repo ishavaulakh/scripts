@@ -28,16 +28,16 @@ sudo apt install -y php libapache2-mod-php php-fpm php-common php-cli php-fpm ph
 
 instapache()
 {
-apt install -y apache2
+sudo apt install -y apache2
 }
 
 
 # normalize www folder
 naturalize()
 {
-find /var/www/ -type d -exec chmod 755 {} \;
-find /var/www/ -type f -exec chmod 644 {} \;
-chown -R $USER:$USER /var/www/
+sudo find /var/www/ -type d -exec chmod 755 {} \;
+sudo find /var/www/ -type f -exec chmod 644 {} \;
+sudo chown -R $USER:$USER /var/www/
 }
 
 #install certbot
