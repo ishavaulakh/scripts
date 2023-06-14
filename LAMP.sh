@@ -5,7 +5,7 @@
 upgradeos(){
 echo Upgrading operating system before install.
 sudo apt update -y && sudo apt upgrade -y
-sudo apt install -y zip unzip
+sudo apt install -y zip unzip wget
 }
 
 #Install MySQL
@@ -49,6 +49,11 @@ sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 }
 
+#install phpmyadmin
+phpmyadmin()
+{
+sudo apt install phpmyadmin -y
+}
 
 install()
 {
@@ -58,7 +63,7 @@ instphp
 naturalize
 certbot
 instmysql
-
+phpmyadmin
 }
 
 install
