@@ -8,6 +8,12 @@ sudo apt update -y && sudo apt upgrade -y
 apt install -y zip unzip
 }
 
+##install postgres
+
+instpostgres(){
+sudo apt install -y postgresql postgresql-contrib
+}
+
 #Install MySQL
 
 instmysql(){
@@ -56,8 +62,8 @@ disapache
 installnginx
 instphp
 naturalize
+instpostgres
 instmysql
-
 }
 
 install
