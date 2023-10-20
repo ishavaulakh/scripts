@@ -58,7 +58,7 @@ chown -R $USER:$USER /var/www/
 # install certbot for let's encrypt
 instcertbot()
 {
-apt install -y certbot python3-certbot-nginx
+sudo apt install -y certbot python3-certbot-nginx
 }
 
 install()
