@@ -21,7 +21,7 @@ mysql_secure_installation
 
 instphp(){
 echo Installing PHP
-sudo apt install -y php php-fpm php-common php-cli php-fpm php-json php-pdo php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath php-imap php-imagick php-intl
+sudo apt install -y php libapache2-mod-php php-fpm php-common php-cli php-fpm php-json php-pdo php-mysql php-pgsql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath php-imap php-imagick php-intl php-gd php-mysql php-xmlrpc php-pear php-cli php-apcu php-curl php-xml libapache2-mod-php
 }
 
 #disable apache2
