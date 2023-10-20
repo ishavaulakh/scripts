@@ -55,6 +55,12 @@ find /var/www/ -type f -exec chmod 644 {} \;
 chown -R $USER:$USER /var/www/
 }
 
+# install certbot for let's encrypt
+instcertbot()
+{
+apt install -y certbot python3-certbot-nginx
+}
+
 install()
 {
 upgradeos
@@ -62,6 +68,7 @@ disapache
 installnginx
 instphp
 naturalize
+instcertbot
 instpostgres
 instmysql
 }
