@@ -1,0 +1,26 @@
+sudo apt update -y && sudo apt upgrade -y
+
+
+sudo apt -y install qemu-kvm libvirt-daemon  bridge-utils virtinst libvirt-daemon-system libguestfs-tools libosinfo-bin  qemu-system virt-manager
+
+sudo modprobe vhost_net
+
+lsmod | grep vhost
+
+echo vhost_net | sudo tee -a /etc/modules
+
+sudo adduser ishav libvirt
+sudo adduser ishav libvirt-qemu
+
+
+# Bridge definitions
+auto br0
+iface br0 inet dhcp
+bridge_ports enp2s0
+bridge_stp off
+bridge_waitport 0
+bridge_fd 0 
+
+
+
+sudo reboot
