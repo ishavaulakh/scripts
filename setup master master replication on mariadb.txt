@@ -1,0 +1,130 @@
+How to setup master master replication on mariadb
+
+Requirements: 2 vps with mariadb installed. 
+
+Limiting factors: Mariadb version needs to be same on both. Basic logic for this: Mariadb is backward compatible so while a newer version will support functions and queries of an older version, the older version cannot be expected to be forward compatible.
+
+Note: The servers will need information on mysqld regarding server-id so we will first do that on both servers
+
+Tech info:
+
+Server 1:
+IP: 10.0.0.120
+
+
+
+Server 2:
+IP: 10.0.0.130
+
+Step 1. Edit MySQL Configuration
+
+Server 1:
+
+Edit the conf file using nano /etc/mysql/my.cnf
+
+Add the following to the file:
+
+[mysqld]
+
+server-id=1
+log-bin="mysql-bin"
+auto-increment-offset = 1
+
+Server 2: 
+
+Edit the conf file using nano /etc/mysql/my.cnf
+
+Add the following to the file:
+
+[mysqld]
+
+server-id=2
+log-bin="mysql-bin"
+auto-increment-offset = 2
+
+
+On both servers:
+Edit /etc/mysql/mariadb.conf.d/50-server.cnf
+
+
+Change bind-address from 
+
+"bind-address = 127.0.0.1"
+
+to 
+
+"bind-address = 0.0.0.0"
+
+This is important so musql will listen on all interfaces.
+
+systemctl restart mysqld
+
+
+Step 2. Create the Replicator User(s)
+
+Login to mysql shell using 
+mysql -u root -p
+or
+mysql
+
+On Server 1:
+
+
+CREATE USER 'replicator'@'10.0.0.130' IDENTIFIED BY 'Replication@123';
+GRANT REPLICATION SLAVE ON *.* TO 'replicator'@'10.0.0.130';
+
+On Server 2:
+
+CREATE USER 'replicator'@'10.0.0.120' IDENTIFIED BY 'Replication@123';
+GRANT REPLICATION SLAVE ON *.* TO 'replicator'@'10.0.0.120';
+
+Step 3. Test if the replication user is being able to login
+
+On Server 1:
+
+mysql -u replicator -p -h 10.0.0.130 -P 3306
+
+On Server 2: 
+
+mysql -u replicator -p -h 10.0.0.120 -P 3306
+
+
+Step 3. Configure Replication from Server 1 to Server 2
+
+mysql> SHOW MASTER STATUS;
+
+In the status, you should make note of the file and position.
+
+
+mysql> STOP SLAVE;
+
+mysql> CHANGE MASTER TO MASTER_HOST = '10.0.0.120', MASTER_USER = 'replicator', MASTER_PASSWORD = 'password', MASTER_LOG_FILE = 'mysql-bin.000003', MASTER_LOG_POS = 157;
+
+
+mysql> START SLAVE;
+
+Note: Change the values for MASTER_LOG_FILE and MASTER_LOG_POS according to your MASTER STATUS values.
+
+Step 3. Configure Replication from Server 2 to Server 1
+
+mysql> SHOW MASTER STATUS;
+
+In the status, you should make note of the file and position.
+
+
+mysql> STOP SLAVE;
+
+mysql> CHANGE MASTER TO MASTER_HOST = '10.0.0.130', MASTER_USER = 'replicator', MASTER_PASSWORD = 'password', MASTER_LOG_FILE = 'mysql-bin.000003', MASTER_LOG_POS = 157;
+
+
+mysql> START SLAVE;
+
+Note: Change the values for MASTER_LOG_FILE and MASTER_LOG_POS according to your MASTER STATUS values.
+
+Step 4. Restart services on both servers to ensure the latest version of configuration is in use.
+
+systemctl restart mysqld
+systemctl status mysqld
+
+
+This is now done. You should be able to use the db in replication now.
