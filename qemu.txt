@@ -12,6 +12,13 @@ echo vhost_net | sudo tee -a /etc/modules
 sudo adduser ishav libvirt
 sudo adduser ishav libvirt-qemu
 
+### IF you want natted network use these commands
+virsh net-autostart default
+virsh net-start default
+virsh net-info default
+
+
+## if you want bridged network. use these in interfaces
 
 # Bridge definitions
 auto br0
