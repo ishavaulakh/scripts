@@ -14,7 +14,7 @@ instmysql(){
 echo Installing MySql
 sudo apt install -y mariadb-server mariadb-client
 echo Securing MySql
-mysql_secure_installation
+sudo mysql_secure_installation
 }
 
 #Install php
