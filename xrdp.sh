@@ -4,3 +4,4 @@ sudo adduser xrdp ssl-cert
 sudo systemctl restart xrdp
 sudo apt install -y firefox-esr
 sudo ufw allow 3389
+sudo shutdown -r 0
