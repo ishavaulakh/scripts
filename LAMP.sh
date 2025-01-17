@@ -35,15 +35,16 @@ sudo apt install -y apache2
 # normalize www folder
 naturalize()
 {
+sudo adduser $USER www-data
 sudo find /var/www/ -type d -exec chmod 755 {} \;
 sudo find /var/www/ -type f -exec chmod 644 {} \;
-sudo chown -R $USER:$USER /var/www/
+sudo chown -R $USER:www-data /var/www/
 }
 
 #install certbot
 certbot()
 {
-sudo apt install python3-certbot-apache
+sudo apt install -y python3-certbot-apache
 }
 
 #install phpmyadmin
