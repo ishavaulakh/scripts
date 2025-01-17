@@ -43,10 +43,7 @@ sudo chown -R $USER:$USER /var/www/
 #install certbot
 certbot()
 {
-sudo apt install -y snapd snap
-sudo snap install core; sudo snap refresh core
-sudo snap install --classic certbot
-sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo apt install python3-certbot-apache
 }
 
 #install phpmyadmin
