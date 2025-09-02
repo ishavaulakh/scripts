@@ -36,6 +36,7 @@ sudo apt install -y apache2
 naturalize()
 {
 sudo adduser $USER www-data
+sudo usermod -g www-data $USER
 sudo find /var/www/ -type d -exec chmod 755 {} \;
 sudo find /var/www/ -type f -exec chmod 644 {} \;
 sudo chown -R $USER:www-data /var/www/
